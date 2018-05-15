@@ -130,20 +130,55 @@ public class Main {
         player[0] = 0;
         player[1] = 0;
 
+        Random randoma = new Random();
+        int a = randoma.nextInt(5);
+        System.out.println(a);
+
+        Random randomb = new Random();
+        int b = randomb.nextInt(5);
+        System.out.println(b);
+
+        Random randomc = new Random();
+        int c = randomc.nextInt(5);
+        System.out.println(c);
+
+        Random randomd = new Random();
+        int d = randomd.nextInt(5);
+        System.out.println(d);
+
+        int[] enemy1 = new int[2];
+        enemy1[0] = a;
+        enemy1[1] = b;
+
+        int[] enemy2 = new int[2];
+        enemy2[0] = c;
+        enemy2[1] = d;
+
         while (true) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
                     boolean is_p = false;
+                    boolean is_en_1 = false;
+                    boolean is_en_2 = false;
                     if (i == player[0] && j == player[1]) {
                         is_p = true;
                         if (is_p = true) {
                             System.out.print("P ");
                         }   
-                    } else {
+                    } else if(i == enemy1[0] && j == enemy1[1]) {
+                        is_en_1 = true;
+                        if (is_en_1 = true) {
+                            System.out.print("x ");
+                        }
+                    } else if(i == enemy2[0] && j == enemy2[1]) {
+                        is_en_2 = true;
+                        if (is_en_2 = true) {
+                            System.out.print("x ");
+                        }
+                    }else {
                         System.out.print("* ");
                     }
                 }
-
                 System.out.println();
             }
             Scanner scanner = new Scanner(System.in);
@@ -185,9 +220,7 @@ public class Main {
                 player[1] = 0;
             }
 
-            Random random = new Random();
-            int n = random.nextInt(5);
-            
+
 
         }
     }
