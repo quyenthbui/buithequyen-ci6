@@ -132,19 +132,16 @@ public class Main {
 
         Random randoma = new Random();
         int a = randoma.nextInt(5);
-        System.out.println(a);
 
         Random randomb = new Random();
         int b = randomb.nextInt(5);
-        System.out.println(b);
 
         Random randomc = new Random();
         int c = randomc.nextInt(5);
-        System.out.println(c);
 
         Random randomd = new Random();
         int d = randomd.nextInt(5);
-        System.out.println(d);
+
 
         int[] enemy1 = new int[2];
         enemy1[0] = a;
@@ -197,6 +194,8 @@ public class Main {
                 dy = 1;
             }
 
+            enemy1[1] = enemy1[1] + 1;
+            enemy2[0] = enemy2[0] + 1;
 
             player[0] = player[0] + dx;
             player[1] = player[1] + dy;
@@ -219,9 +218,18 @@ public class Main {
             if (player[1] == 5){
                 player[1] = 0;
             }
-
-
-
+            if (enemy2[0] == -1) {
+                enemy2[0] = 4;
+            }
+            if (enemy1[1] == -1) {
+                enemy1[1] = 4;
+            }
+            if (enemy2[0] == 5) {
+                enemy2[0] = 0;
+            }
+            if (enemy1[1] == 5){
+                enemy1[1] = 0;
+            }
         }
     }
 }
