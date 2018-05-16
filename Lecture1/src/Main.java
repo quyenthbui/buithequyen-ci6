@@ -130,18 +130,22 @@ public class Main {
         player[0] = 0;
         player[1] = 0;
 
-        Random randoma = new Random();
-        int a = randoma.nextInt(5);
+        while (true){
+            Random randoma = new Random();
+            int a = randoma.nextInt(5);
 
-        Random randomb = new Random();
-        int b = randomb.nextInt(5);
+            Random randomb = new Random();
+            int b = randomb.nextInt(5);
 
-        Random randomc = new Random();
-        int c = randomc.nextInt(5);
+            Random randomc = new Random();
+            int c = randomc.nextInt(5);
 
-        Random randomd = new Random();
-        int d = randomd.nextInt(5);
+            Random randomd = new Random();
+            int d = randomd.nextInt(5);
 
+            if (a!=c || b!=d) {
+                break;
+            }
 
         int[] enemy1 = new int[2];
         enemy1[0] = a;
