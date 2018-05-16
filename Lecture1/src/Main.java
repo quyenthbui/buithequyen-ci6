@@ -130,22 +130,25 @@ public class Main {
         player[0] = 0;
         player[1] = 0;
 
-        while (true){
-            Random randoma = new Random();
-            int a = randoma.nextInt(5);
 
-            Random randomb = new Random();
-            int b = randomb.nextInt(5);
+        Random randoma = new Random();
+        int a = randoma.nextInt(5);
 
-            Random randomc = new Random();
-            int c = randomc.nextInt(5);
+        Random randomb = new Random();
+        int b = randomb.nextInt(5);
 
-            Random randomd = new Random();
-            int d = randomd.nextInt(5);
+        Random randomc = new Random();
+        int c = randomc.nextInt(5);
 
-            if (a!=c || b!=d) {
-                break;
-            }
+        Random randomd = new Random();
+        int d = randomd.nextInt(5);
+
+        Random randome = new Random();
+        int e = randome.nextInt(5);
+
+        Random randomf = new Random();
+        int f = randomf.nextInt(5);
+
 
         int[] enemy1 = new int[2];
         enemy1[0] = a;
@@ -155,12 +158,17 @@ public class Main {
         enemy2[0] = c;
         enemy2[1] = d;
 
+        int[] gift = new int[2];
+        gift[0]=e;
+        gift[1]=f;
+
         while (true) {
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
                     boolean is_p = false;
                     boolean is_en_1 = false;
                     boolean is_en_2 = false;
+                    boolean is_gift = false;
                     if (i == player[0] && j == player[1]) {
                         is_p = true;
                         if (is_p = true) {
@@ -176,7 +184,12 @@ public class Main {
                         if (is_en_2 = true) {
                             System.out.print("x ");
                         }
-                    }else {
+                    } else if(i == gift[0] && j == gift[1]){
+                       is_gift = true;
+                       if (is_gift = true) {
+                           System.out.print("G ");
+                       }
+                    } else {
                         System.out.print("* ");
                     }
                 }
@@ -233,6 +246,10 @@ public class Main {
             }
             if (enemy1[1] == 5){
                 enemy1[1] = 0;
+            }
+            if (player[0]==gift[0] && player[1]==gift[1]){
+                System.out.println("You win!");
+                break;
             }
         }
     }
