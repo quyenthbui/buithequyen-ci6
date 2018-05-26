@@ -130,21 +130,25 @@ public class Main {
         player[0] = 0;
         player[1] = 0;
 
-
         Random randoma = new Random();
         int a = randoma.nextInt(5);
+
 
         Random randomb = new Random();
         int b = randomb.nextInt(5);
 
+
         Random randomc = new Random();
         int c = randomc.nextInt(5);
+
 
         Random randomd = new Random();
         int d = randomd.nextInt(5);
 
+
         Random randome = new Random();
         int e = randome.nextInt(5);
+
 
         Random randomf = new Random();
         int f = randomf.nextInt(5);
@@ -173,7 +177,7 @@ public class Main {
                         is_p = true;
                         if (is_p = true) {
                             System.out.print("P ");
-                        }   
+                        }
                     } else if(i == enemy1[0] && j == enemy1[1]) {
                         is_en_1 = true;
                         if (is_en_1 = true) {
@@ -251,6 +255,14 @@ public class Main {
                 System.out.println("You win!");
                 break;
             }
+        }
+        /***
+         *<kieu tra ve> [ten ham] ([parameters optional])
+         *
+         * }
+         */
+        static void printMap(String[][]) {
+            for (int i=0; i<map.lentgh)
         }
     }
 }
