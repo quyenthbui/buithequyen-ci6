@@ -16,13 +16,13 @@ public class GameCanvas extends JPanel {
 
     List<Star> stars;
     private Random randomstar = new Random();
-    int countStar = 0;
+    private int countStar = 0;
 
     Player player;
 
     List<Enemy> enemies;
     private Random randomenemy = new Random();
-    int countEnemy = 0;
+    private int countEnemy = 0;
 
     private Random randomplayer = new Random();
 
@@ -99,7 +99,8 @@ public class GameCanvas extends JPanel {
 
         this.enemies.forEach(enemy -> enemy.render(graphics));
 
-        this.graphics.drawImage(this.playerImage, this.positionXplayer, this.positionYplayer, 20, 20, null);
+        this.player.render(graphics);
+
         this.repaint();
     }
 
@@ -142,7 +143,7 @@ public class GameCanvas extends JPanel {
             veloY = this.randomenemy.nextInt(10)-5;
         }
         if(this.countEnemy==500 ){
-            Enemy enemy = new Enemy(this.loadImage("resources-rocket/resources/images/circle.png"),
+            Enemy enemy = new Enemy(this.loadImage("resources/images/circle.png"),
                     this.randomenemy.nextInt(800),
                     this.randomenemy.nextInt(600),
                     20,
@@ -159,7 +160,7 @@ public class GameCanvas extends JPanel {
     }
 
     private void createPlayer() {
-        this.player = new Player(this.loadImage("resources-rocket/resources/images/circle.png"),
+        this.player = new Player(this.loadImage("resources/images/circle.png"),
                 this.randomplayer.nextInt(1024),
                 this.randomplayer.nextInt(600),
                 30,

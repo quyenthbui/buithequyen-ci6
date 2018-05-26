@@ -56,8 +56,6 @@ public class Enemy {
             this.x = rand.nextInt(windowWidth);
         }
 
-
-
     }
     public void chase(int playerPosX, int playerPosY){
         if(playerPosX == this.x && playerPosY ==this.y){
@@ -78,8 +76,6 @@ public class Enemy {
         }
 
     }
-
-
 
     public void render(Graphics graphics){
         graphics.drawImage(this.image, this.x, this.y,this.width,this.height,null);

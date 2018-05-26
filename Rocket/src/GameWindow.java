@@ -38,10 +38,10 @@ public class GameWindow extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    gameCanvas.positionXplayer -= 3;
+                    gameCanvas.player.run ("left",1024,600);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    gameCanvas.positionXplayer += 3;
+                    gameCanvas.player.run ("right",1024,600);
                 }
             }
 
