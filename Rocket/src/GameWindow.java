@@ -43,6 +43,12 @@ public class GameWindow extends JFrame {
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     gameCanvas.player.run ("right",1024,600);
                 }
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    gameCanvas.player.run ("up",1024,600);
+                }
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    gameCanvas.player.run ("down",1024,600)
+                }
             }
 
             @Override
