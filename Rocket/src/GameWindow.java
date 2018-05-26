@@ -47,7 +47,7 @@ public class GameWindow extends JFrame {
                     gameCanvas.player.run ("up",1024,600);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    gameCanvas.player.run ("down",1024,600)
+                    gameCanvas.player.run ("down",1024,600);
                 }
             }
 

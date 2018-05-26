@@ -10,7 +10,6 @@ import java.util.Random;
 
 public class GameCanvas extends JPanel {
 
-    BufferedImage playerImage;
     BufferedImage backBuffered;
     Graphics graphics;
 
@@ -25,9 +24,6 @@ public class GameCanvas extends JPanel {
     private int countEnemy = 0;
 
     private Random randomplayer = new Random();
-
-    public int positionXplayer = 250;
-    public int positionYplayer = 250;
 
     public GameCanvas() {
         this.setSize(1024, 600);
@@ -113,7 +109,7 @@ public class GameCanvas extends JPanel {
         this.createStar();
         this.stars.forEach(star -> star.run());
         this.createEnemy();
-        this.enemies.forEach(enemy -> enemy.run(1024,600,this.player.x, this.player.y));
+        this.enemies.forEach(enemy -> enemy.run(1024, 600, this.player.x, this.player.y));
     }
 
     private void createStar() {
@@ -138,11 +134,11 @@ public class GameCanvas extends JPanel {
         int veloX, veloY;
         veloX = 0;
         veloY = 0;
-        while(veloX==0 && veloY==0){
-            veloX = this.randomenemy.nextInt(10)-5;
-            veloY = this.randomenemy.nextInt(10)-5;
+        while (veloX == 0 && veloY == 0) {
+            veloX = this.randomenemy.nextInt(10) - 5;
+            veloY = this.randomenemy.nextInt(10) - 5;
         }
-        if(this.countEnemy==500 ){
+        if (this.countEnemy == 500) {
             Enemy enemy = new Enemy(this.loadImage("resources/images/circle.png"),
                     this.randomenemy.nextInt(800),
                     this.randomenemy.nextInt(600),
@@ -152,10 +148,9 @@ public class GameCanvas extends JPanel {
                     veloY);
             this.enemies.add(enemy);
 //            this.countEnemy =101;
-            this.countEnemy =0;
-        }
-        else{
-            this.countEnemy +=1;
+            this.countEnemy = 0;
+        } else {
+            this.countEnemy += 1;
         }
     }
 
@@ -164,7 +159,7 @@ public class GameCanvas extends JPanel {
                 this.randomplayer.nextInt(1024),
                 this.randomplayer.nextInt(600),
                 30,
-                30,10);
+                30, 10, 10);
     }
 
     private BufferedImage loadImage(String path) {
