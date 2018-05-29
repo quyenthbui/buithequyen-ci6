@@ -1,11 +1,8 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Background {
-    public int x;
-    public int y;
-    public int width;
-    public int height;
+    public int x, y;
+    public int width, height;
     public Color color;
 
     public Background(int x, int y, int width, int height, Color color) {

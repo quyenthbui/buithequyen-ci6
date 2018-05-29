@@ -1,9 +1,11 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Player {
+
     public Vector2D position;
     public Vector2D velocity;
     public double angle;
@@ -17,19 +19,20 @@ public class Player {
         this.velocity = new Vector2D(1, 0);
         this.speed = 2;
         this.random = new Random();
-        this.angle = 0;
         this.polygon = new Polygon();
+        this.angle = 0;
     }
 
     public void run() {
-        this.velocity = (this.velocity.normalize().multiply(speed));
+        this.velocity = (this.velocity.normalize()).multiply(speed);
         this.velocity = this.velocity.rotate(angle);
         this.position.addUp(this.velocity);
-        this.setVertices();
-        this.backToScreen();
+        this.setVerties();
+        this.backtoScreen();
     }
 
-    public void backToScreen() {
+
+    private void backtoScreen() {
         if (this.position.x > 1024) {
             this.position.set(0, this.random.nextInt(600));
         }
@@ -44,17 +47,16 @@ public class Player {
         }
     }
 
-    private void setVertices() {
+    private void setVerties() {
         List<Vector2D> vectorG = Arrays.asList(
                 this.velocity.normalize().multiply(16),
                 this.velocity.normalize().multiply((float) (8 * Math.sqrt(2))),
                 this.velocity.normalize().multiply((float) (8 * Math.sqrt(2)))
         );
-
         this.vertices = Arrays.asList(
                 this.position.add(vectorG.get(0)),
                 this.position.add(vectorG.get(1).rotate(135)),
-                this.position.add(vectorG.get(1).rotate(-135))
+                this.position.add(vectorG.get(2).rotate(-135))
         );
     }
 
@@ -65,4 +67,3 @@ public class Player {
         graphics.fillPolygon(this.polygon);
     }
 }
-

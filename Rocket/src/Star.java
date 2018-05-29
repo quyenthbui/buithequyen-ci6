@@ -2,12 +2,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Star {
-
-    BufferedImage image;
+    public BufferedImage image;
     public Vector2D position;
-    public int width;
-    public int height;
+    public int width, height;
     public Vector2D velocity;
+
 
     public Star(BufferedImage image, Vector2D position, int width, int height, Vector2D velocity) {
         this.image = image;

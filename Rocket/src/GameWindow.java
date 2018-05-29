@@ -4,6 +4,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+
 public class GameWindow extends JFrame {
 
     GameCanvas gameCanvas;
@@ -36,9 +37,11 @@ public class GameWindow extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     gameCanvas.player.angle = -10;
+
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     gameCanvas.player.angle = 10;
+
                 }
             }
 
@@ -52,6 +55,7 @@ public class GameWindow extends JFrame {
                 }
             }
         });
+
     }
 
     private void windowEvent() {
