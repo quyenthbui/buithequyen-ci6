@@ -1,65 +1,71 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Player {
-    public BufferedImage image;
-    public int x,y;
-    public int width, height;
-    public int velocityX;
-    public int velocityY;
-    Random rand = new Random();
+    public Vector2D position;
+    public Vector2D velocity;
+    public double angle;
 
-    public Player(BufferedImage image, int x, int y, int width, int height, int velocityX, int velocityY) {
-        this.image = image;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
+    private Random random;
+    private List<Vector2D> vertices;
+    private Polygon polygon;
+
+    public Player() {
+        this.position = new Vector2D();
+        this.velocity = new Vector2D(1,0);
+        this.random = new Random();
+        this.angle = 0;
+        this.polygon = new Polygon();
+
     }
 
-    public void run(String direction, int windowWidth, int windowHeight) {
-        int dX = 0;
-        int dY = 0;
-        if (direction.equalsIgnoreCase("left")) {
-            dX -= this.velocityX;
-        } else if (direction.equalsIgnoreCase("right")) {
-            dX += this.velocityX;
+    public void run() {
+        this.velocity = (this.velocity.normalize());
+        this.velocity = this.velocity.rotate(angle);
+        this.position.addUp(this.velocity);
+        this.setVertices();
+        this.backToScreen();
+    }
+
+    public void backToScreen() {
+        if (this.position.x > 1024) {
+            this.position.set(0, this.random.nextInt(600));
         }
 
-        if (direction.equalsIgnoreCase("up")) {
-            dY -= this.velocityY;
-        } else if (direction.equalsIgnoreCase("down")){
-            dY += this.velocityY;
+        if (this.position.x < 0) {
+            this.position.set(1024, this.random.nextInt(600));
         }
 
-        if (this.y + dY <= 0) {
-            this.y = windowHeight;
-            this.x = rand.nextInt(windowWidth)-30;
-
-        } else if (this.y + dY >= windowHeight){
-            this.y = 0;
-            this.x = rand.nextInt(windowWidth)-30;
-        } else {
-            this.y += dY;
+        if (this.position.y > 600) {
+            this.position.set(this.random.nextInt(1024), 0);
         }
 
-        if (this.x + dX <= 0) {
-            this.x = windowWidth;
-            this.y = rand.nextInt(windowHeight)-30;
-
-        } else if (this.x + dX >= windowWidth) {
-            this.x = 0;
-            this.y = rand.nextInt(windowHeight)-30;
-        } else {
-            this.x += dX;
+        if (this.position.y < 0) {
+            this.position.set(this.random.nextInt(1024), 600);
         }
     }
 
-    public void render(Graphics graphics){
-        graphics.drawImage(this.image,this.x, this.y, this.width, this.height, null);
+    private void setVertices(){
+        List<Vector2D> vectorG = Arrays.asList(
+                this.velocity.normalize().multiply(16),
+                this.velocity.normalize().multiply((float)(8*Math.sqrt(2))),
+                this.velocity.normalize().multiply((float)(8*Math.sqrt(2)))
+        );
+
+        this.vertices = Arrays.asList(
+                this.position.add(vectorG.get(0)),
+                this.position.add(vectorG.get(1).rotate(135)),
+                this.position.add(vectorG.get(1).rotate(-135))
+        );
+    }
+
+    public void render(Graphics graphics) {
+        graphics.setColor(Color.RED);
+        this.polygon.reset();
+        this.vertices.forEach(vertex -> polygon.addPoint((int) vertex.x, (int) vertex.y));
+        graphics.fillPolygon(this.polygon);
     }
 }
 

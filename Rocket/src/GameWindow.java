@@ -10,7 +10,7 @@ public class GameWindow extends JFrame {
     long lastTime = 0;
 
     public GameWindow() {
-        this.setSize(1024, 600);// set size window
+        this.setSize(1024, 600);
 
         this.setupGameCanvas();
 
@@ -38,21 +38,21 @@ public class GameWindow extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    gameCanvas.player.run ("left",1024,600);
+                    gameCanvas.player.angle = -10;
                 }
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    gameCanvas.player.run ("right",1024,600);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    gameCanvas.player.run ("up",1024,600);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    gameCanvas.player.run ("down",1024,600);
+                    gameCanvas.player.angle = 10;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    gameCanvas.player.angle = 0;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    gameCanvas.player.angle = 0;
+                }
             }
         });
     }
