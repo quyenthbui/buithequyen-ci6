@@ -17,13 +17,7 @@ public class Enemy {
         this.velocity = velocity;
     }
 
-    private Vector2D followPlayer(Vector2D positionPlayer){
-        Vector2D velocitySubtract;
-        velocitySubtract = positionPlayer.subtract(this.position);
-        return velocitySubtract.normalize();
-    }
-
-    public void run(Vector2D positionPlayer ) {
+    public void run(Vector2D positionPlayer) {
         this.velocity = this.followPlayer(positionPlayer).multiply(3);
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -32,20 +26,26 @@ public class Enemy {
 
     private void backToScreen() {
         if (this.position.x > 1024) {
-            this.position.set(0,this.random.nextInt(600));
+            this.position.set(0, this.random.nextInt(600));
         }
         if (this.position.x < 0) {
-            this.position.set(1024,this.random.nextInt(600));
+            this.position.set(1024, this.random.nextInt(600));
         }
         if (this.position.y > 600) {
-            this.position.set(this.random.nextInt(1024),0);
+            this.position.set(this.random.nextInt(1024), 0);
         }
         if (this.position.y < 0) {
-            this.position.set(this.random.nextInt(1024),600);
+            this.position.set(this.random.nextInt(1024), 600);
         }
     }
 
+    private Vector2D followPlayer(Vector2D positionPlayer) {
+        Vector2D velocitySubtract;
+        velocitySubtract = positionPlayer.subtract(this.position);
+        return velocitySubtract.normalize();
+    }
+
     public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int)this.position.x, (int)this.position.y, this.width, this.height, null);
+        graphics.drawImage(this.image, (int) this.position.x, (int) this.position.y, this.width, this.height, null);
     }
 }

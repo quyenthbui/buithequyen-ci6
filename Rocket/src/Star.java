@@ -23,6 +23,6 @@ public class Star {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int)this.position.x, (int)this.position.y, this.width, this.height, null);
+        graphics.drawImage(this.image, (int) this.position.x, (int) this.position.y, this.width, this.height, null);
     }
 }

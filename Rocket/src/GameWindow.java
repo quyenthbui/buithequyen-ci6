@@ -11,11 +11,8 @@ public class GameWindow extends JFrame {
 
     public GameWindow() {
         this.setSize(1024, 600);
-
         this.setupGameCanvas();
-
         this.event();
-
         this.setVisible(true);
     }
 
