@@ -8,7 +8,7 @@ public class BulletPlayer {
     public BulletPlayer(){
         this.position = new Vector2D();
         this.velocity = new Vector2D();
-        this.renderer = new ImageRenderer("resources-rocket/resources/images/circle.png",4,4);
+        this.renderer = new ImageRenderer("resources/images/circle.png",4,4);
     }
 
     public void run(){

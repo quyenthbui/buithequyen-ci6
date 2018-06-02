@@ -10,21 +10,13 @@ import java.util.Random;
 
 
 public class GameCanvas extends JPanel {
-
-
-    BufferedImage playerImage;
     BufferedImage backBuffered;
-
     Graphics graphics;
     Background background;
     List<Star> stars;
     List<Enemy>  enemies;
-    //
     EnemyAttack enemyAttack;
-
     Player player;
-
-
     private Random random = new Random();
     private int countStar =0;
     private int countEnemy =0;
@@ -33,7 +25,6 @@ public class GameCanvas extends JPanel {
 
     public GameCanvas()  {
         this.setSize(1024, 600);
-        //load image
         this.setupCharacter();
         this.setupBackbuffered();
         this.setVisible(true);
@@ -46,11 +37,8 @@ public class GameCanvas extends JPanel {
 
     private void setupCharacter(){
         this.background = new Background();
-        //
         this.setupEnemyAttack();
-
         this.setupPlayer();
-
         this.setupStar();
         this.setupEnemy();
     }
