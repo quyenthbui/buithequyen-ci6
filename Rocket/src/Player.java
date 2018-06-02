@@ -1,38 +1,43 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Player {
 
     public Vector2D position;
     public Vector2D velocity;
-    public double angle;
-    private float speed;
     private Random random;
-    private List<Vector2D> vertices;
-    private Polygon polygon;
+    public double angle = 0.0;
+    private PolygonRenderer renderer;
+    private PlayerShoot playerShoot;
+
 
     public Player() {
         this.position = new Vector2D();
-        this.velocity = new Vector2D(1, 0);
-        this.speed = 2;
+        this.velocity = new Vector2D();
         this.random = new Random();
-        this.polygon = new Polygon();
-        this.angle = 0;
+        this.renderer = new PolygonRenderer(
+                Color.RED,
+                new Vector2D(),
+                new Vector2D(0, 16),
+                new Vector2D(20, 8)
+        );
+        this.playerShoot = new PlayerShoot();
     }
 
     public void run() {
-        this.velocity = (this.velocity.normalize()).multiply(speed);
-        this.velocity = this.velocity.rotate(angle);
         this.position.addUp(this.velocity);
-        this.setVerties();
-        this.backtoScreen();
+        this.renderer.angle = this.angle;
+        this.backToScreen();
+        this.playerShoot.run(this);
+        this.playerShoot.bulletsPlayer.forEach(bulletPlayer -> bulletPlayer.run());
     }
 
-
-    private void backtoScreen() {
+    private void backToScreen() {
         if (this.position.x > 1024) {
             this.position.set(0, this.random.nextInt(600));
         }
@@ -47,23 +52,13 @@ public class Player {
         }
     }
 
-    private void setVerties() {
-        List<Vector2D> vectorG = Arrays.asList(
-                this.velocity.normalize().multiply(16),
-                this.velocity.normalize().multiply((float) (8 * Math.sqrt(2))),
-                this.velocity.normalize().multiply((float) (8 * Math.sqrt(2)))
-        );
-        this.vertices = Arrays.asList(
-                this.position.add(vectorG.get(0)),
-                this.position.add(vectorG.get(1).rotate(135)),
-                this.position.add(vectorG.get(2).rotate(-135))
-        );
-    }
 
     public void render(Graphics graphics) {
-        graphics.setColor(Color.RED);
-        this.polygon.reset();
-        this.vertices.forEach(vertex -> polygon.addPoint((int) vertex.x, (int) vertex.y));
-        graphics.fillPolygon(this.polygon);
+        this.renderer.render(graphics,position);
+        this.playerShoot.bulletsPlayer.forEach(bulletPlayer -> bulletPlayer.render(graphics));
     }
+
+
 }
+
+
