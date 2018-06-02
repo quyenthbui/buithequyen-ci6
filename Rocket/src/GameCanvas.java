@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 public class GameCanvas extends JPanel {
     BufferedImage backBuffered;
     Graphics graphics;
@@ -21,15 +20,13 @@ public class GameCanvas extends JPanel {
     private int countStar =0;
     private int countEnemy =0;
 
-
-
     public GameCanvas()  {
         this.setSize(1024, 600);
         this.setupCharacter();
         this.setupBackbuffered();
         this.setVisible(true);
-
     }
+
     private void setupBackbuffered(){
         this.backBuffered = new BufferedImage(1024,600, BufferedImage.TYPE_4BYTE_ABGR);
         this.graphics = this.backBuffered.getGraphics();
@@ -43,20 +40,17 @@ public class GameCanvas extends JPanel {
         this.setupEnemy();
     }
 
-
     private  void setupEnemyAttack(){
         this.enemyAttack = new EnemyAttack();
         this.enemyAttack.position.set(random.nextInt(1024),random.nextInt(600));
         this.enemyAttack.velocity.set(4,0);
     }
 
-
     private  void setupPlayer(){
         this.player = new Player();
         this.player.position.set(500,300);
         this.player.velocity.set(4,0);
     }
-
 
     private void setupStar(){
         this.stars = new ArrayList<>();
@@ -68,22 +62,16 @@ public class GameCanvas extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(this.backBuffered,0,0,null);
-
     }
 
     public void renderAll(){
         this.background.render(graphics);
-
         this.stars.forEach(star -> star.render(graphics));
         this.enemies.forEach(enemy -> enemy.render(graphics));
-
         this.player.render(graphics);
-        //
         this.enemyAttack.render(graphics);
-
         this.repaint();
     }
-
 
     public void runAll(){
         this.createStar();
@@ -94,18 +82,12 @@ public class GameCanvas extends JPanel {
                     .multiply(2);
             enemy.velocity.set(velocity);
         });
-
         Vector2D velocity = player.position.subtract(enemyAttack.position).normalize()
                 .multiply(2);
         this.enemyAttack.velocity.set(velocity);
-
         this.enemyAttack.run();
-
-
-
         this.enemies.forEach(enemy -> enemy.run());
         this.player.run();
-
     }
 
     private  void createStar(){
@@ -113,7 +95,6 @@ public class GameCanvas extends JPanel {
             Star star = new Star();
             star.position.set(1024,this.random.nextInt(600));
             star.velocity.set(-(this.random.nextInt(3)+1),0);
-
             this.stars.add(star);
             this.countStar =0;
         }else{
@@ -122,7 +103,6 @@ public class GameCanvas extends JPanel {
     }
     private void createEnemy(){
         if(this.countEnemy==500){
-
             Enemy enemy = new Enemy();
             enemy.position.set(this.random.nextInt(1024),this.random.nextInt(600));
             this.enemies.add(enemy);
@@ -132,7 +112,6 @@ public class GameCanvas extends JPanel {
             this.countEnemy +=1;
         }
     }
-
 
     private BufferedImage loadImage(String path){
         try{

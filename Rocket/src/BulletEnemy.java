@@ -5,7 +5,6 @@ public class BulletEnemy {
     public Vector2D velocity;
     private ImageRenderer renderer;
 
-    //constructor
     public BulletEnemy(){
         this.position = new Vector2D();
         this.velocity = new Vector2D();

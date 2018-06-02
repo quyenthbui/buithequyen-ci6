@@ -15,15 +15,12 @@ public class PlayerShoot {
         BulletPlayer bulletPlayer = new BulletPlayer();
         bulletPlayer.position.set(player.position);
         bulletPlayer.velocity.set(player.velocity.add(player.velocity.normalize().multiply(6)));
-
         this.bulletsPlayer.add(bulletPlayer);
         countBullet =0;
         }
         else{
             countBullet +=1;
         }
-
-        //xoa cac vien dan ra ngoai man hinh
         Iterator<BulletPlayer> it = bulletsPlayer.iterator();
         while (it.hasNext()) {
             BulletPlayer bullet = it.next();
@@ -31,7 +28,5 @@ public class PlayerShoot {
                 it.remove();
             }
         }
-
-
     }
 }

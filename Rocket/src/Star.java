@@ -6,8 +6,6 @@ public class Star {
     private ImageRenderer renderer;
     public Vector2D velocity;
 
-    //constructor
-
     public Star() {
         this.position = new Vector2D();
         this.velocity = new Vector2D();

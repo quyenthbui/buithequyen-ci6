@@ -9,7 +9,6 @@ public class ImageRenderer {
     private int width;
     private int height;
 
-
     public ImageRenderer(String path, int width, int height){
         this.width = width;
         this.height = height;
@@ -28,6 +27,4 @@ public class ImageRenderer {
             return null;
         }
     }
-
-
 }

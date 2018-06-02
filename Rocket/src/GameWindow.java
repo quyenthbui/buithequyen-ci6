@@ -17,7 +17,6 @@ public class GameWindow extends JFrame {
         this.setVisible(true);// cho phep cua so window hien thi
     }
 
-
     private void setupGameCanvas(){
         this.gameCanvas = new GameCanvas();
         this.add(this.gameCanvas);
@@ -37,17 +36,14 @@ public class GameWindow extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()== KeyEvent.VK_LEFT){
                     gameCanvas.player.angle -= 10;
-
                 }
                 if(e.getKeyCode()==KeyEvent.VK_RIGHT){
                     gameCanvas.player.angle += 10;
                 }
                 Vector2D rotate = (new Vector2D(4,0)).rotate(gameCanvas.player.angle);
                 gameCanvas.player.velocity.set(rotate);
-
                 if(e.getKeyCode()==KeyEvent.VK_UP){
                     gameCanvas.player.velocity.multiply(2);
-
                 }
             }
 
@@ -56,13 +52,11 @@ public class GameWindow extends JFrame {
                 if(e.getKeyCode()==KeyEvent.VK_UP){
                     Vector2D rotate = (new Vector2D(4,0)).rotate(gameCanvas.player.angle);
                     gameCanvas.player.velocity.set(rotate);
-
                 }
-
             }
         });
-
     }
+
     private void windowEvent(){
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -72,7 +66,6 @@ public class GameWindow extends JFrame {
         });
     }
 
-
     public void gameLoop(){
         while(true){
             long currentTime = System.nanoTime();
@@ -81,7 +74,6 @@ public class GameWindow extends JFrame {
                 this.gameCanvas.renderAll();
                 this.lastTime = currentTime;
             }
-
         }
     }
 }

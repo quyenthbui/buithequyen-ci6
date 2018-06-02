@@ -12,7 +12,6 @@ public class EnemyShoot {
     }
 
     public void run(EnemyAttack enemy){
-
         if(countBullet ==200){
             for(int i=0; i<12 ; i++){
                 BulletEnemy bulletEnemy = new BulletEnemy();
@@ -21,17 +20,12 @@ public class EnemyShoot {
                 bulletEnemy.position.set(enemy.position);
                 this.bulletEnemies.add(bulletEnemy);
             }
-
             countBullet =0;
             this.angleBullet =0;
-
         }
         else{
             countBullet +=1;
         }
-
-        //xoa cac vien dan ra ngoai man hinh
-
         Iterator<BulletEnemy> it = bulletEnemies.iterator();
         while (it.hasNext()) {
             BulletEnemy bullet = it.next();
@@ -39,9 +33,5 @@ public class EnemyShoot {
                 it.remove();
             }
         }
-
-
-
     }
-
 }

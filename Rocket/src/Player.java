@@ -15,7 +15,6 @@ public class Player {
     private PolygonRenderer renderer;
     private PlayerShoot playerShoot;
 
-
     public Player() {
         this.position = new Vector2D();
         this.velocity = new Vector2D();
@@ -52,13 +51,10 @@ public class Player {
         }
     }
 
-
     public void render(Graphics graphics) {
         this.renderer.render(graphics,position);
         this.playerShoot.bulletsPlayer.forEach(bulletPlayer -> bulletPlayer.render(graphics));
     }
-
-
 }
 
 
